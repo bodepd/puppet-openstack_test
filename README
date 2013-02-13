@@ -7,3 +7,8 @@ It should likely add support for running on Mac reasonably soon!
 to install, simply run the command:
 
     > export FACTER_github_user_login=XXXX;export FACTER_github_user_password=XXXXXXX;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
+
+(of coarse, you should replace XXX with your github username and password if you intend to use operations that write to
+github.
+
+WARNING - this script will uninstall any apt installs of puppet and reinstall it as a gem
