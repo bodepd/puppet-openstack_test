@@ -16,14 +16,14 @@ class openstack_test {
     ensure   => '2.7.20',
   }
 
-  package { 'ruby-dev':
+  package { ['libxslt-dev', 'libxml2-dev', 'ruby-dev']:
     ensure => present,
+    before => Package['github_api'],
   }
 
   package { 'github_api':
     provider => 'gem',
     ensure   => present,
-    require  => Package['ruby-dev'],
   }
 
   package { 'librarian-puppet':
