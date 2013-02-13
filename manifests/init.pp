@@ -11,6 +11,10 @@ class openstack_test {
     cache_dir           => 'ufs /var/spool/squid/ 10000 256 1024',
   }
 
+  package { 'ruby-dev':
+    ensure => present,
+  } ->
+
   package { ['github_api', 'librarian-puppet']:
     provider => 'gem',
     ensure   => present,
