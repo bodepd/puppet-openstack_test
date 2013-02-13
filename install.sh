@@ -34,5 +34,6 @@ git clone https://github.com/bodepd/puppet-squid3 /etc/puppet/modules/squid3
 git clone https://github.com/bodepd/puppet-openstack_test /etc/puppet/modules/openstack_test
 git clone https://github.com/puppetlabs/puppetlabs-stdlib /etc/puppet/modules/stdlib
 git clone https://github.com/puppetlabs/puppetlabs-apt /etc/puppet/modules/apt
+git clone https://github.com/puppetlabs/puppetlabs-vcsrepo /etc/puppet/modules/vcsrepo
 
 puppet apply -e "class { 'openstack_test': github_user_login => $FACTER_github_user_login, github_user_password => $FACTER_github_user_password }"
