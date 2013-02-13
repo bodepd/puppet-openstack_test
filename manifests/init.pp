@@ -8,7 +8,7 @@ class openstack_test {
 
   class { 'squid3':
     maximum_object_size => '30096 KB',
-    cache_dir           => 'ufs /var/spool/squid/ 10000 256 1024',
+    cache_dir           => 'ufs /var/spool/squid3/ 10000 256 1024',
   }
 
   package { 'ruby-dev':
