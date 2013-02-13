@@ -1,0 +1,9 @@
+module for installing openstack testing/development environment
+
+this module currently only works on Ubuntu Precise.
+
+It should likely add support for running on Mac reasonably soon!
+
+to install, simply run the command:
+
+    > bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
