@@ -2,7 +2,10 @@
 # This class is responsible for installing a test node for
 # running the openstack tests
 #
-class openstack_test {
+class openstack_test(
+  $github_user_login,
+  $github_user_password,
+) {
 
   class { 'vagrant': }
 
@@ -28,4 +31,21 @@ class openstack_test {
 
   # TODO - setup node as a jenkins slave
 
+  file { ['/etc/vagrant', '/etc/vagrant/projects']:
+    ensure => directory,
+    before => Vcsrepo['/etc/vagrant/projects/puppetlabs-openstack_dev_env'],
+  }
+
+  vcsrepo { '/etc/vagrant/projects/puppetlabs-openstack_dev_env':
+    ensure => present,
+    provider => git,
+    source => 'https://github.com/puppetlabs/puppetlabs-openstack_dev_env',
+  }
+
+  file { "/etc/vagrant/projects/puppetlabs-openstack_dev_env/.github_auth":
+    content =>
+"login: <%= github_user_login %>
+password: <%= github_user_password %>"
+    require => Vcsrepo['/etc/vagrant/projects/puppetlabs-openstack_dev_env']
+  }
 }

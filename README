@@ -6,4 +6,4 @@ It should likely add support for running on Mac reasonably soon!
 
 to install, simply run the command:
 
-    > bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
+    > export FACTER_github_user_login=XXXX;export FACTER_github_user_password=XXXXXXX;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
