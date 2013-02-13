@@ -11,11 +11,6 @@ class openstack_test {
     cache_dir           => 'ufs /var/spool/squid3/ 10000 256 1024',
   }
 
-  package { 'puppet':
-    provider => 'gem',
-    ensure   => '2.7.20',
-  }
-
   package { ['libxslt-dev', 'libxml2-dev', 'ruby-dev']:
     ensure => present,
     before => Package['github_api'],
@@ -29,7 +24,6 @@ class openstack_test {
   package { 'librarian-puppet':
     provider => 'gem',
     ensure   => present,
-    require  => Package['puppet'],
   }
 
   # TODO - setup node as a jenkins slave
