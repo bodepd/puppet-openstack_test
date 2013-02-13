@@ -26,7 +26,7 @@ if dpkg-query --show facter ; then
 fi
 
 apt-get install -y rubygems
-gem install puppet -v 2.7.20
+gem install puppet --no-ri --no-rdoc -v 2.7.20
 apt-get install -y git-core
 
 git clone https://github.com/bodepd/puppet-vagrant /etc/puppet/modules/vagrant
