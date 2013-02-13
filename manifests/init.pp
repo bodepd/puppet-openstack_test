@@ -45,7 +45,7 @@ class openstack_test(
   file { "/etc/vagrant/projects/puppetlabs-openstack_dev_env/.github_auth":
     content =>
 "login: <%= github_user_login %>
-password: <%= github_user_password %>"
+password: <%= github_user_password %>",
     require => Vcsrepo['/etc/vagrant/projects/puppetlabs-openstack_dev_env']
   }
 }
