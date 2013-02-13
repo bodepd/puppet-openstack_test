@@ -9,6 +9,10 @@ if dpkg-query --show puppet ; then
   echo 'Puppet is currently installed from apt, being uninstalled and reinstalled from gem (BEWARE)';
   apt-get remove -y puppet
 fi
+if dpkg-query --show facter ; then
+  echo 'facter is currently installed from apt, being uninstalled and reinstalled from gem (BEWARE)';
+  apt-get remove -y facter
+fi
 gem install puppet -v 2.7.20
 apt-get install -y git-core
 git clone https://github.com/bodepd/puppet-vagrant /etc/puppet/modules/vagrant
