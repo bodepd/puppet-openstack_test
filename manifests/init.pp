@@ -35,7 +35,7 @@ class openstack_test(
     ensure   => '0.8.1',
   }
 
-  package { 'librarian':
+  package { ['librarian', 'rspec']:
     provider => 'gem',
     ensure   => present,
   }
