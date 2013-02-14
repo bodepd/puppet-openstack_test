@@ -17,7 +17,6 @@ class openstack_test(
   file_line { 'localnet_acl':
     line  => 'acl localnet src 172.16.0.0/16',
     path  => '/etc/squid3/squid.conf',
-    match => "^(#|)\s*acl\s"
   }
 
   file_line { 'localnet_http_access':
