@@ -21,12 +21,18 @@ class openstack_test(
 
   package { 'github_api':
     provider => 'gem',
+    ensure   => '0.8.1',
+  }
+
+  package { 'librarian':
+    provider => 'gem',
     ensure   => present,
   }
 
   package { 'librarian-puppet':
     provider => 'gem',
     ensure   => present,
+    require  => Package['librarian'],
   }
 
   # TODO - setup node as a jenkins slave
