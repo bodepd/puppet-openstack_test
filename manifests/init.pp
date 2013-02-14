@@ -14,6 +14,17 @@ class openstack_test(
     cache_dir           => 'ufs /var/spool/squid3/ 10000 256 1024',
   }
 
+  file_line { 'localnet_acl':
+    line  => 'acl localnet src 172.16.0.0/16',
+    path  => '/etc/squid3/squid.conf',
+    match => "^(#|)\s*acl\s"
+  }
+
+  file_line { 'localnet_http_access':
+    line  => 'http_access allow localnet',
+    path  => '/etc/squid3/squid.conf',
+  }
+
   package { ['libxslt-dev', 'libxml2-dev', 'ruby-dev']:
     ensure => present,
     before => Package['github_api'],
