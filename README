@@ -4,14 +4,19 @@ this module currently only works on Ubuntu Precise.
 
 It should likely add support for running on Mac reasonably soon!
 
+## Summary
+
+This script supports installing 3 seperate componets:
+
+### installing openstack testing environment
+
 to install, simply run the command:
 
-    > export FACTER_github_user_login=XXXX;export FACTER_github_user_password=XXXXXXX;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
+    > export install_test_env=true;export github_user_login=XXXX;export github_user_password=XXXXXXX;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
 
 (of coarse, you should replace XXX with your github username and password if you intend to use operations that write to
 github.
 
-WARNING - this script will uninstall any apt installs of puppet and reinstall it as a gem
 ### Installing a Jenkins server
 
     > export install_jenkins_server=true;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"

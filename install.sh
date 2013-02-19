@@ -9,6 +9,8 @@
 # install a few basic applications
 apt-get install -y puppet rubygems git-core
 
+# install the required modules
+# TODO: make this idempotent
 git clone https://github.com/bodepd/puppet-vagrant /etc/puppet/modules/vagrant
 git clone https://github.com/bodepd/puppet-squid3 /etc/puppet/modules/squid3
 git clone https://github.com/bodepd/puppet-openstack_test /etc/puppet/modules/openstack_test
