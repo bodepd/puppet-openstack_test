@@ -15,6 +15,8 @@ git clone https://github.com/bodepd/puppet-openstack_test /etc/puppet/modules/op
 git clone https://github.com/puppetlabs/puppetlabs-stdlib /etc/puppet/modules/stdlib
 git clone https://github.com/puppetlabs/puppetlabs-apt /etc/puppet/modules/apt
 git clone https://github.com/puppetlabs/puppetlabs-vcsrepo /etc/puppet/modules/vcsrepo
+git clone https://github.com/bodepd/puppet-jenkins /etc/puppet/modules/jenkins
+git clone https://github.com/puppetlabs/puppetlabs-java /etc/puppet/modules/java
 
 puppet apply -e "class { 'openstack_test': github_user_login => $FACTER_github_user_login, github_user_password => $FACTER_github_user_password }"
 if [ -n "$install_jenkins_server" ]; then
