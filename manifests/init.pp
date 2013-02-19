@@ -5,6 +5,7 @@
 class openstack_test(
   $github_user_login,
   $github_user_password,
+  $base_dir = '/home/jenkins',
 ) {
 
   class { 'vagrant': }
@@ -48,21 +49,21 @@ class openstack_test(
 
   # TODO - setup node as a jenkins slave
 
-  file { ['/etc/vagrant', '/etc/vagrant/projects']:
+  file { [$base_dir, "${base_dir}/projects"]:
     ensure => directory,
-    before => Vcsrepo['/etc/vagrant/projects/puppetlabs-openstack_dev_env'],
+    before => Vcsrepo["${base_dir}/projects/puppetlabs-openstack_dev_env"],
   }
 
-  vcsrepo { '/etc/vagrant/projects/puppetlabs-openstack_dev_env':
+  vcsrepo { "${base_dir}/projects/puppetlabs-openstack_dev_env":
     ensure => present,
     provider => git,
     source => 'https://github.com/puppetlabs/puppetlabs-openstack_dev_env',
   }
 
-  file { "/etc/vagrant/projects/puppetlabs-openstack_dev_env/.github_auth":
-    content => inline_template(
-"login: <%= github_user_login %>
-password: <%= github_user_password %>"),
-    require => Vcsrepo['/etc/vagrant/projects/puppetlabs-openstack_dev_env']
+  file { "${base_dir}/projects/puppetlabs-openstack_dev_env/.github_auth":
+    content =>
+"login: ${github_user_login}
+password: ${github_user_password}",
+    require => Vcsrepo["${base_dir}/projects/puppetlabs-openstack_dev_env"]
   }
 }
