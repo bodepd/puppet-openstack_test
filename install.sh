@@ -6,7 +6,10 @@
 # this is just here b/c librarian puppet cannot be installed as a gem if puppet is installed from
 # apt
 
-# install a few basic applications
+# install the latest version of puppet
+wget http://apt.puppetlabs.com/puppetlabs-release-precise.deb
+sudo dpkg -i puppetlabs-release-precise.deb
+sudo apt-get update
 apt-get install -y puppet rubygems git-core
 
 # install the required modules
