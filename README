@@ -12,3 +12,12 @@ to install, simply run the command:
 github.
 
 WARNING - this script will uninstall any apt installs of puppet and reinstall it as a gem
+### Installing a Jenkins server
+
+    > export install_jenkins_server=true;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
+
+### Installing a jenkins agent
+
+
+    > export install_jenkins_agent=true;export jenkins_server=XXXXXX;export ssh_password=jenkins123;bash -c "$(curl -fsS https://raw.github.com/bodepd/puppet-openstack_test/master/install.sh)"
+
