@@ -18,7 +18,23 @@ git clone https://github.com/puppetlabs/puppetlabs-vcsrepo /etc/puppet/modules/v
 git clone https://github.com/bodepd/puppet-jenkins /etc/puppet/modules/jenkins
 git clone https://github.com/puppetlabs/puppetlabs-java /etc/puppet/modules/java
 
-puppet apply -e "class { 'openstack_test': github_user_login => $FACTER_github_user_login, github_user_password => $FACTER_github_user_password }"
+# conditionally install the stuff!
+if [ -n "$install_test_env" ]; then
+
+  if [ -z "$github_user_login" ]; then
+    echo "ENV VAR github_user_login must be set"
+    exit 1
+  fi
+
+  if [ -z "$github_user_password" ]; then
+    echo "ENV VAR github_user_password must be set"
+    exit 1
+  fi
+
+  puppet apply -e "class { 'openstack_test': github_user_login => $github_user_login, github_user_password => $github_user_password }"
+
+fi
+
 if [ -n "$install_jenkins_server" ]; then
   puppet apply -e "include 'openstack_test::jenkins::server'"
 fi
