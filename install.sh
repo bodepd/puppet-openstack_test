@@ -5,29 +5,9 @@
 #
 # this is just here b/c librarian puppet cannot be installed as a gem if puppet is installed from
 # apt
-if [ -z "$FACTER_github_user_login" ]; then
-  echo "ENV VAR FACTER_github_user_login must be set"
-  exit 1
-fi
 
-if [ -z "$FACTER_github_user_password" ]; then
-  echo "ENV VAR FACTER_github_user_password must be set"
-  exit 1
-fi
-
-if dpkg-query --show puppet ; then
-  echo 'Puppet is currently installed from apt, being uninstalled and reinstalled from gem (BEWARE)';
-  apt-get remove -y puppet
-fi
-
-if dpkg-query --show facter ; then
-  echo 'facter is currently installed from apt, being uninstalled and reinstalled from gem (BEWARE)';
-  apt-get remove -y facter
-fi
-
-apt-get install -y rubygems
-gem install puppet --no-ri --no-rdoc -v 2.7.20
-apt-get install -y git-core
+# install a few basic applications
+apt-get install -y puppet rubygems git-core
 
 git clone https://github.com/bodepd/puppet-vagrant /etc/puppet/modules/vagrant
 git clone https://github.com/bodepd/puppet-squid3 /etc/puppet/modules/squid3
