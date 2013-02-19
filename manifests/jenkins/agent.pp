@@ -3,7 +3,7 @@ class openstack_test::jenkins::agent (
   $ssh_password,
   $jenkins_password = 'jenkins_password',
 ) {
-  jenkins::agent { $::hostname:
+  jenkins::agent { $::ipaddress:
     server       => $server,
     port         => 8080,
     username     => 'jenkins_user',
