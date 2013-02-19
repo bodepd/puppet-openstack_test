@@ -20,8 +20,9 @@ class openstack_test(
   }
 
   file_line { 'localnet_http_access':
-    line  => 'http_access allow localnet',
-    path  => '/etc/squid3/squid.conf',
+    line    => 'http_access allow localnet',
+    path    => '/etc/squid3/squid.conf',
+    require => File_line['localnet_acl'],
   }
 
   package { ['libxslt-dev', 'libxml2-dev', 'ruby-dev']:
