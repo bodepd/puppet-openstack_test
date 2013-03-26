@@ -26,44 +26,9 @@ class openstack_test(
     require => File_line['localnet_acl'],
   }
 
-  package { ['libxslt-dev', 'libxml2-dev', 'ruby-dev']:
-    ensure => present,
-    before => Package['github_api'],
-  }
-
-  package { 'github_api':
-    provider => 'gem',
-    ensure   => '0.8.1',
-  }
-
-  package { ['librarian', 'rspec']:
-    provider => 'gem',
+  package { 'bundler':
     ensure   => present,
+    provider => 'gem'
   }
 
-  package { 'librarian-puppet':
-    provider => 'gem',
-    ensure   => present,
-    require  => Package['librarian'],
-  }
-
-  # TODO - setup node as a jenkins slave
-
-  file { [$base_dir, "${base_dir}/projects"]:
-    ensure => directory,
-    before => Vcsrepo["${base_dir}/projects/puppetlabs-openstack_dev_env"],
-  }
-
-  vcsrepo { "${base_dir}/projects/puppetlabs-openstack_dev_env":
-    ensure => present,
-    provider => git,
-    source => 'https://github.com/puppetlabs/puppetlabs-openstack_dev_env',
-  }
-
-  file { "${base_dir}/projects/puppetlabs-openstack_dev_env/.github_auth":
-    content =>
-"login: ${github_user_login}
-password: ${github_user_password}",
-    require => Vcsrepo["${base_dir}/projects/puppetlabs-openstack_dev_env"]
-  }
 }
