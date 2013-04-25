@@ -1,4 +1,4 @@
-class openstack_test::jenkins::agent (
+class openstack_test::agent (
   $server,
   $ssh_password,
   $jenkins_password = 'jenkins_password',

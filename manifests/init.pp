@@ -3,8 +3,6 @@
 # running the openstack tests
 #
 class openstack_test(
-  $github_user_login,
-  $github_user_password,
   $base_dir = '/home/jenkins',
 ) {
 

@@ -41,7 +41,7 @@ if [ -n "$install_test_env" ]; then
 fi
 
 if [ -n "$install_jenkins_server" ]; then
-  puppet apply -e "include 'openstack_test::jenkins::server'"
+  puppet apply -e "include 'openstack_test::server'"
 fi
 
 if [ -n "$install_jenkins_agent" ]; then
@@ -54,5 +54,5 @@ if [ -n "$install_jenkins_agent" ]; then
     echo "ENV VAR ssh_password must be set"
     exit 1
   fi
-  puppet apply -e "class { 'openstack_test::jenkins::agent': server => '$jenkins_server', ssh_password => '$ssh_password' }"
+  puppet apply -e "class { 'openstack_test::agent': server => '$jenkins_server', ssh_password => '$ssh_password' }"
 fi
