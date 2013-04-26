@@ -121,14 +121,30 @@ class openstack_test::openstack_jenkins_job() {
     block-upstream: false
     builders:
       - shell: |
-          echo $ZUUL_PROJECT
-          echo $ZUUL_REF
-          #export module_install_method=librarian
-          #mkdir \$BUILD_ID
-          #cd \$BUILD_ID
-          #git clone git://github.com/puppetlabs/puppetlabs-openstack_dev_env
-          #cd puppetlabs-openstack_dev_env
-          #bash -e test_scripts/openstack_test.sh
+          #!/bin/bash
+          set -x
+          set -e
+          set -u
+
+          export module_install_method='librarian'
+          export operatingsystem='ubuntu'
+          export openstack_version='grizzly'
+          export test_mode='puppet_openstack'
+          export ref=`echo $ZUUL_CHANGES | awk -F':' '{print $3}'`
+          export cherry_pick_command="git fetch https://review.openstack.org/$ZUUL_PROJECT $ref && git cherry-pick #FETCH_HEAD"
+
+          # get the name of the directory where we need to change code
+          project=`echo $ZUUL_PROJECT | sed -e 's/stackforge\/puppet-//g'`
+          export module_repo="modules/${project}"
+
+          mkdir $BUILD_ID
+          cd $BUILD_ID
+          git clone "git://github.com/stackforge/puppet-openstack_dev_env"
+          cd puppet-openstack_dev_env
+          echo `pwd`
+          export checkout_branch_command="${cherry_pick_command:-}"
+
+          bash -xe test_scripts/openstack_test.sh
     triggers:
       - zuul
 ',
