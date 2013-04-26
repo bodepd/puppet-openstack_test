@@ -130,8 +130,8 @@ class openstack_test::openstack_jenkins_job() {
           export operatingsystem="ubuntu"
           export openstack_version="grizzly"
           export test_mode="puppet_openstack"
-          export ref=`echo $ZUUL_CHANGES | awk -F":" "{print $3}"`
-          export cherry_pick_command="git fetch https://review.openstack.org/$ZUUL_PROJECT $ref && git cherry-pick #FETCH_HEAD"
+          export ref=`echo $ZUUL_CHANGES | awk -F":" \'{print $3}\'`
+          export cherry_pick_command="git fetch https://review.openstack.org/$ZUUL_PROJECT $ref && git cherry-pick FETCH_HEAD"
 
           # get the name of the directory where we need to change code
           project=`echo $ZUUL_PROJECT | sed -e "s/stackforge\/puppet-//g"`
