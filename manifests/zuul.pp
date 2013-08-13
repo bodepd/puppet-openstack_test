@@ -1,13 +1,14 @@
 class openstack_test::zuul(
   $jenkins_apikey,
   $zuul_ssh_private_key,
+  $vhost_name     = $::fqdn,
   $jenkins_user   = 'jenkins_user',
   $jenkins_server = 'http://localhost:8080',
   $gerrit_server  = 'review.openstack.org',
   $gerrit_user    = 'puppet-openstack-ci-user'
 ) {
   class { '::zuul':
-    vhost_name           => $::fqdn,
+    vhost_name           => $vhost_name,
     serveradmin          => "root@localhost",
     jenkins_server       => $jenkins_server,
     jenkins_user         => $jenkins_user,
