@@ -46,7 +46,7 @@ class openstack_test::openstack_jenkins_job() {
       - puppet-module-unit
 ",
     notify  => Exec['jenkins_jobs_update'],
-    require => Exec['install_jenkins_job_builder', 'reload_account_config'],
+    require => [Exec['install_jenkins_job_builder'], Class['jenkins::service']],
   }
 
 #?  file { "/etc/jenkins_jobs/config/openstack_test.yml":
@@ -149,7 +149,8 @@ class openstack_test::openstack_jenkins_job() {
       - zuul
 ',
     notify  => Exec['jenkins_jobs_update'],
-    require => Exec['install_jenkins_job_builder', 'reload_account_config'],
+    require => [Exec['install_jenkins_job_builder'], Class['jenkins::service']],
+
   }
 
 }
