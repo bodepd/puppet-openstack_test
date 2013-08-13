@@ -12,6 +12,10 @@ class openstack_test::server(
     setup_auth => true,
   }
 
+  jenkins::plugin { 'gearman-plugin':
+    version => '0.0.3',
+  }
+
   class { 'jenkins::job_builder':
     url      => 'http://127.0.0.1:8080',
     username => $jenkins_user,
